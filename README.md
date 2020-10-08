@@ -40,7 +40,8 @@ On line 9:
 
 ## Todo
 
-- [ ] Test as githook (separate branch?)
+- [x] Test as githook (separate branch?)
 - [ ] Use git blame to show sender
+- [ ] Escape strings in output
 - [ ] Figure out a way to set behaviour depending on usage
 - [ ] Improve documentation
