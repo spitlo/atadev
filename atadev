@@ -5,6 +5,7 @@ shopt -s nocasematch
 
 BLUE='\033[1;34m'
 BOLD="\033[1m"
+BROWN='\033[0;33m'
 NC='\033[0m'
 YELLOW='\033[1;33m'
 
@@ -51,7 +52,8 @@ else
       while IFS= read -r mention; do
         line="$(cut -d ':' -f1 <<< "$mention")"
         text="$(cut -d ':' -f2- <<< "$mention")"
-        echo -e "${BOLD}On line $line:${NC}"
+        sender="$(git blame "$filename" -L "$line",+1 --line-porcelain | sed -n 's/^author //p')"
+        echo -e "${BOLD}On line $line, ${BROWN}$sender${NC}${BOLD} says:${NC}"
         echo -e "  $text"
       done <<< "$mentions"
     fi

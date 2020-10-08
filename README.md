@@ -41,7 +41,7 @@ On line 9:
 ## Todo
 
 - [x] Test as githook (separate branch?)
-- [ ] Use git blame to show sender
+- [x] Use git blame to show sender
 - [ ] Escape strings in output
 - [x] Figure out a way to set behaviour depending on usage
 - [ ] Improve documentation
