@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Find matches no matter case
+shopt -s nocasematch
+
+BLUE='\033[1;34m'
+BOLD="\033[1m"
+NC='\033[0m'
+YELLOW='\033[1;33m'
+
+# Figure out a way to set this depending on usage
+USE="hook"
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+all_files="$(git ls-file)"
+author="$(git config user.name)"
+author_short="$(echo "$author" | cut -d " " -f1)"
+
+if [ $USE = "hook" ]; then
+  files=$changed_files
+else
+  files=$all_files
+fi
+
+messages="$(echo "$files" | xargs grep -i -- "@$author\|@$author_short")"
+files_with_mentions="$(echo "$files" | xargs grep -li -- "@$author\|@$author_short")"
+
+if [ -z "$messages" ]; then
+  exit
+else
+  while IFS= read -r filename; do
+    mentions="$(grep -in "@$author\|@$author_short" "$filename")"
+    if [ -n "$mentions" ]; then
+      # Always display short name
+      mentions="${mentions//@$author/@$author_short}"
+      # Colorize name
+      mentions="${mentions//@$author_short/${YELLOW}@$author_short${NC}}"
+      echo -e "\nMentions in ${BLUE}$filename${NC}"
+      header_length=$((12 + ${#filename}))
+      printf "%${header_length}s\n" | tr " " "="
+      while IFS= read -r mention; do
+        line="$(cut -d ':' -f1 <<< "$mention")"
+        text="$(cut -d ':' -f2- <<< "$mention")"
+        echo -e "${BOLD}On line $line:${NC}"
+        echo -e "  $text"
+      done <<< "$mentions"
+    fi
+  done <<< "$files_with_mentions"
+fi
