@@ -3,7 +3,7 @@
 # Find matches no matter case
 shopt -s nocasematch
 
-BLUE='\033[1;34m'
+BLUE='\033[1;34m' # @Jakob This blue is very ugly
 BOLD="\033[1m"
 NC='\033[0m'
 YELLOW='\033[1;33m'
