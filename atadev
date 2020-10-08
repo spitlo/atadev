@@ -3,13 +3,16 @@
 # Find matches no matter case
 shopt -s nocasematch
 
-BLUE='\033[1;34m' # @Jakob This blue is very ugly
+BLUE='\033[1;34m'
 BOLD="\033[1m"
 NC='\033[0m'
 YELLOW='\033[1;33m'
 
 # Figure out a way to set this depending on usage
 USE="hook"
+
+echo "Script name:"
+echo "$0"
 
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 all_files="$(git ls-file)"
