@@ -43,5 +43,5 @@ On line 9:
 - [x] Test as githook (separate branch?)
 - [ ] Use git blame to show sender
 - [ ] Escape strings in output
-- [ ] Figure out a way to set behaviour depending on usage
+- [x] Figure out a way to set behaviour depending on usage
 - [ ] Improve documentation

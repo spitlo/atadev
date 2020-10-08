@@ -8,8 +8,15 @@ BOLD="\033[1m"
 NC='\033[0m'
 YELLOW='\033[1;33m'
 
-# Figure out a way to set this depending on usage
-USE="hook"
+# Figure out what is expected of us
+# For githooks, we only want to run against changed files,
+# but used as a command we want to look in all files.
+# There might be better ways to test this.
+if [ "$0" = ".git/hooks/post-merge" ]; then
+  USE="hook"
+else
+  USE="command"
+fi
 
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 all_files="$(git ls-files)"
@@ -26,6 +33,9 @@ messages="$(echo "$files" | xargs grep -i -- "@$author\|@$author_short")"
 files_with_mentions="$(echo "$files" | xargs grep -li -- "@$author\|@$author_short")"
 
 if [ -z "$messages" ]; then
+  if [ $USE = "command" ]; then
+    echo "No messages, sorry!"
+  fi
   exit
 else
   while IFS= read -r filename; do
