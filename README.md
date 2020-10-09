@@ -15,12 +15,12 @@ cd my-project/.git/hooks
 ln -s ~/path/to/atadev post-merge
 ```
 
-For JavaScript projects you can (probably) use [husky](https://github.com/typicode/husky). Copy this script to your project’s scripts folder, and add something like this to `package.json`:
+For JavaScript projects you can use [husky](https://github.com/typicode/husky). Copy this script to your project’s scripts folder, and add something like this to `package.json`:
 
 ```json
   "husky": {
     "hooks": {
-      "post-merge": "bin/atadev"
+      "post-merge": "bin/atadev hook"
     }
   }
 ```
