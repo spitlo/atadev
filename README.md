@@ -76,7 +76,7 @@ const myConst = {
 
 - [x] Test as githook (separate branch?)
 - [x] Use git blame to show sender
-- [ ] Test if the githook works with newly added files
+- [x] Test if the githook works with newly added files
 - [ ] Escape strings in output
 - [x] Figure out a way to set behaviour depending on usage
 - [x] Improve documentation
