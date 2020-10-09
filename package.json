@@ -1,0 +1,14 @@
+{
+  "name": "atadev",
+  "version": "1.0.0",
+  "repository": "git@github.com:spitlo/atadev.git",
+  "license": "MIT",
+  "dependencies": {
+    "husky": "^4.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./atadev hook"
+    }
+  }
+}
