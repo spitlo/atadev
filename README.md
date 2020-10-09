@@ -80,3 +80,4 @@ const myConst = {
 - [ ] Escape strings in output
 - [x] Figure out a way to set behaviour depending on usage
 - [x] Improve documentation
+- [ ] Editor plugins!
