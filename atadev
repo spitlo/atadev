@@ -17,8 +17,7 @@ if [ "$0" = ".git/hooks/post-merge" ]; then
   USE="hook"
 fi
 
-echo "Script name:"
-echo "$0"
+echo "Running as '$USE'"
 
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 all_files="$(git ls-files)"
