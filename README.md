@@ -1,6 +1,6 @@
 # Atadev
 
-A simple script to enable `@`:ing other devs in code.
+A simple script to enable `@`:ing other devs in code and getting notifications about mentions on `git pull`.
 
 Use it as a post-merge hook and it will check new files for any mentions and alert the user.
 
